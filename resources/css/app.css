@@ -1,0 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+
+
+body {
+  background-color: #E5E5E5;
+}
+
+header {
+  width: 100vw;
+  height: 272px;
+  background-color: #8257E5;
+}
