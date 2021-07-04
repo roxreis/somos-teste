@@ -1,3 +1,32 @@
+# APP DE LISTA DE TAREFAS   
+
+⦁	CRIAÇÃO DAS TABELAS E SUAS REFERÊNCIAS (INTEGRIDADE REFERENCIAL)
+⦁	TABELA TAREFAS (ID, DESCRIÇÃO, RESPONSÁVEL, DATA FINALIZAÇÃO DA TAREFA, CATEGORIA)  
+⦁	TABELA CATEGORIA (ID, DESCRIÇÃO DA CATEGORIA)  
+⦁	TABELA DE RESPONSÁVEIS (ID, NOME)    
+
+⦁	CRIAÇÃO DE UM FORMULÁRIO DE CADASTRO    
+
+⦁	CRIAÇÃO DE UMA TELA PARA VISUALIZAÇÃO DAS TAREFAS    
+
+⦁	EDIÇÃO E EXCLUSÃO    
+
+⦁	CRIAÇÃO DE UMA TELA DE VISUALIZAÇÃO DA TAREFA COM DETALHAMENTO    
+
+# Comandos para rodar o projeto localmente    
+
+clonar repositório: https://github.com/roxreis/somos-teste.git  
+
+arquivo .env.example, tirar o example e deixar o nome apenas como .env, criar um banco mysql e colocar no nome deste banco no arquivo .env em DB_DATABASE= "nome do seu banco".    
+
+php artisan key:generate (cria uma chave automaticamente no arquivo .env)
+php artisan migrate (criar as tabelas no bd).  
+php artisan db:seed (povoar o banco com 10 usuários fake).  
+php artisan serve (subir o servidor).  
+acessar: http://localhost:8000  
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
