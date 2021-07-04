@@ -18,8 +18,8 @@
 clonar repositório: https://github.com/roxreis/somos-teste.git  
 
 arquivo .env.example, tirar o example e deixar o nome apenas como .env, criar um banco mysql e colocar o nome deste banco no arquivo .env em DB_DATABASE= "nome do seu banco".    
-
-php artisan key:generate (cria uma chave automaticamente no arquivo .env)
+ - Rodar comandos no terminal  
+php artisan key:generate (cria uma chave automaticamente no arquivo .env)  
 php artisan migrate (criar as tabelas no bd).  
 php artisan db:seed (povoar o banco com 10 usuários fake).  
 php artisan serve (subir o servidor).  
