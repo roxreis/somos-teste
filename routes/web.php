@@ -17,7 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [TaskController::class, 'listTasks'])->name('listTasks');
 Route::get('/create-task', [TaskController::class, 'createTask'])->name('createTask');
+Route::get('/edit-task/{id}', [TaskController::class, 'editTask'])->name('editTask');
+Route::post('/update-task', [TaskController::class, 'updateTask'])->name('updateTask');
 Route::post('/save-task', [TaskController::class, 'saveTask'])->name('saveTask');
+Route::post('/done-task', [TaskController::class, 'doneTask'])->name('doneTask');
+Route::post('/delete-task/{id}', [TaskController::class, 'deleteTask'])->name('deleteTask');
 Route::get('/detail-task/{id}', [TaskController::class, 'detailTask'])->name('detailTask');
 
 

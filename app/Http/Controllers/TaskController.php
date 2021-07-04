@@ -6,13 +6,18 @@ use App\Models\Category;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class TaskController extends Controller
 {
     public function listTasks()
-    {
-        $tasks = Task::all();
-        return view('listTask',['tasks' => $tasks]);
+    {   
+        $tasks = Task::where('done', '=', null)->get();
+        $doneTasks = Task::where('done', '=', 1)->get();
+        return view('listTask',[
+            'tasks' => $tasks,
+            'doneTasks' => $doneTasks,
+        ]);
     }    
     
     public function createTask()
@@ -26,15 +31,50 @@ class TaskController extends Controller
     }
 
     public function saveTask(Request $request)
-    {   
-        $request->validate([
-            'user_id' => 'required',
-            'description' => 'required',
-            'category' => 'required',
-        ]);
+    {  
+        
+        try {
+            $request->validate([
+                'user_id' => 'required',
+                'description' => 'required',
+                'category' => 'required',
+            ]);
 
-        Task::create($request->all());
-        return redirect()->route('listTasks');
+            Task::create($request->all());
+            return redirect()->route('listTasks');
+       
+        } catch (\Exception $exception) {
+
+            return back()->withError($exception->getMessage())->withInput();
+        }
+  
+
+    }
+
+
+    public function updateTask(Request $request)
+    {   
+        try {
+            
+            $task = Task::find($request->id);
+            $task->update($request->all());
+            return redirect()->route('listTasks');
+
+        } catch (\Throwable $th) {
+            return redirect()
+                ->back()
+                ->withError($th->getMessage())->withInput();
+        }
+    }
+
+    public function editTask($id)
+    {
+        $task = Task::find($id);
+        $categories = Category::all();
+        return view('editTask', [
+            'task' => $task,
+            'categories' => $categories
+        ]);
     }
 
     public function detailTask($id)
@@ -44,6 +84,32 @@ class TaskController extends Controller
             'task' => $task
         ]);
 
+    }
+
+    public function doneTask(Request $request)
+    {    
+        try {
+
+            $taskDone = Task::find($request->id);
+            $taskDone->update($request->all());
+            return redirect()->route('listTasks');
+
+        } catch (\Throwable $th) {
+            return redirect()
+                ->back()
+                ->withError($th->getMessage())->withInput();
+        }
+  
+    }
+
+
+    public function deleteTask($id)
+    {
+        $delete = Task::find($id);
+        if(!is_null($delete)){
+          $delete->delete();
+          return redirect()->route('listTasks');
+        } 
     }
 
 }

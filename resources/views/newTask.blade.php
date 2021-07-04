@@ -6,6 +6,10 @@ Nova Tarefa
 
 @section('conteudo')
 <section class="mt-5 d-flex flex-column align-items-center"> 
+  @if (session('error'))
+    <div class="alert alert-danger">{{ session('error') }}</div>
+  @endif
+
   <h3 class="text-center ">NOVA TAREFA</h3>
   <form action="/save-task" method="POST" class="col-4 mt-2 border border-secondary p-3 bg-light">
     @csrf
@@ -22,7 +26,7 @@ Nova Tarefa
         </select>
     </div>
     <div class="form-group">
-      <label for="category">Categoria</label>
+      <label for="category">Escolha a categoria</label>
       <select multiple class="form-control" name="category">
         @if(!$categories)
           <option >Sem Categoria cadastrada</option>
@@ -38,7 +42,7 @@ Nova Tarefa
   <form action="/save-category" method="POST" class="col-4 mt-2 border border-secondary p-3 bg-light">
     @csrf
     <div class="form-group">
-      <label>Nova Categoria</label>
+      <label>Cadastrar nova categoria</label>
       <input type="text" name="name" class="form-control">
     </div>
     <button type="submit" class="btn btn-success">Criar</button>
